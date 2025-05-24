@@ -1,5 +1,5 @@
 
-package duoclass;
+package controle;
 
 /**
  *
