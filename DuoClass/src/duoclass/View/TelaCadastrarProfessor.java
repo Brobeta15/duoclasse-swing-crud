@@ -4,6 +4,9 @@
  */
 package duoclass.View;
 
+import duoclass.Model.Professor;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rober
@@ -57,6 +60,11 @@ public class TelaCadastrarProfessor extends javax.swing.JFrame {
         ButtonVoltarParaLogin.setBackground(new java.awt.Color(153, 153, 153));
         ButtonVoltarParaLogin.setForeground(new java.awt.Color(0, 0, 0));
         ButtonVoltarParaLogin.setText("Voltar");
+        ButtonVoltarParaLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonVoltarParaLoginActionPerformed(evt);
+            }
+        });
 
         LabelNomeCadastar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LabelNomeCadastar.setForeground(new java.awt.Color(0, 0, 0));
@@ -83,6 +91,11 @@ public class TelaCadastrarProfessor extends javax.swing.JFrame {
         ButtonCadastrarCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ButtonCadastrarCadastrar.setForeground(new java.awt.Color(0, 0, 0));
         ButtonCadastrarCadastrar.setText("Cadastrar");
+        ButtonCadastrarCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCadastrarCadastrarActionPerformed(evt);
+            }
+        });
 
         Class1.setFont(new java.awt.Font("Showcard Gothic", 0, 48)); // NOI18N
         Class1.setForeground(new java.awt.Color(51, 153, 0));
@@ -159,6 +172,26 @@ public class TelaCadastrarProfessor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonCadastrarCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarCadastrarActionPerformed
+  
+        Professor professor = new Professor(TextNomeCadastrar.getText(), TextEmailCadastrar.getText(), TextSenhaCadastrar.getText());
+        
+        boolean resultadoValidacao = Professor.validarCadastro(professor);
+        
+        if(resultadoValidacao == false){
+            JOptionPane.showMessageDialog(null, "Nome, senha ou email inválidos!", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+            
+        }else{
+            TextNomeCadastrar.setText("");
+            TextEmailCadastrar.setText("");
+            TextSenhaCadastrar.setText("");
+        }
+    }//GEN-LAST:event_ButtonCadastrarCadastrarActionPerformed
+
+    private void ButtonVoltarParaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVoltarParaLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonVoltarParaLoginActionPerformed
 
     /**
      * @param args the command line arguments

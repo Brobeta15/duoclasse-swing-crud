@@ -51,7 +51,7 @@
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="PasswordSenhaLogin" min="-2" pref="219" max="-2" attributes="0"/>
+                  <Component id="PasswordSenha" min="-2" pref="219" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="219" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
@@ -74,7 +74,7 @@
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="LabelSenha" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="PasswordSenhaLogin" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="PasswordSenha" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -100,6 +100,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Entrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonEntrarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ButtonCadastrar">
       <Properties>
@@ -174,7 +177,7 @@
         <Property name="text" type="java.lang.String" value="Duo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="PasswordSenhaLogin">
+    <Component class="javax.swing.JPasswordField" name="PasswordSenha">
     </Component>
   </SubComponents>
 </Form>

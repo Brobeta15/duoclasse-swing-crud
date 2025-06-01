@@ -4,6 +4,8 @@
  */
 package duoclass.View;
 
+import duoclass.Model.Professor;
+
 /**
  *
  * @author rober
@@ -34,7 +36,7 @@ public class TelaLogin extends javax.swing.JFrame {
         TextEmail = new javax.swing.JTextPane();
         Class = new javax.swing.JLabel();
         Duo = new javax.swing.JLabel();
-        PasswordSenhaLogin = new javax.swing.JPasswordField();
+        PasswordSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -43,6 +45,11 @@ public class TelaLogin extends javax.swing.JFrame {
         ButtonEntrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ButtonEntrar.setForeground(new java.awt.Color(0, 0, 0));
         ButtonEntrar.setText("Entrar");
+        ButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEntrarActionPerformed(evt);
+            }
+        });
 
         ButtonCadastrar.setBackground(new java.awt.Color(153, 153, 153));
         ButtonCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -95,7 +102,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(LabelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PasswordSenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
         );
@@ -113,7 +120,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PasswordSenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,6 +130,14 @@ public class TelaLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEntrarActionPerformed
+        
+        Professor professor = new Professor(TextEmail.getText(), PasswordSenha.getText());
+        
+        TextEmail.setText("");
+        PasswordSenha.setText("");
+    }//GEN-LAST:event_ButtonEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,7 +181,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel Duo;
     private javax.swing.JLabel LabelEmail;
     private javax.swing.JLabel LabelSenha;
-    private javax.swing.JPasswordField PasswordSenhaLogin;
+    private javax.swing.JPasswordField PasswordSenha;
     private javax.swing.JTextPane TextEmail;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
