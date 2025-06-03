@@ -1,15 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package duoclass.View;
 
 import duoclass.Model.Professor;
+import duoclass.Model.ProfessorDAO;
+import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author rober
- */
 public class TelaLogin extends javax.swing.JFrame {
 
     /**
@@ -38,7 +39,7 @@ public class TelaLogin extends javax.swing.JFrame {
         Duo = new javax.swing.JLabel();
         PasswordSenha = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
 
         ButtonEntrar.setBackground(new java.awt.Color(51, 153, 255));
@@ -131,12 +132,40 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //método fechar tela
+    public void fecharTela(){
+        
+        WindowEvent fecharjanela = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(fecharjanela);
+        
+    }
     private void ButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEntrarActionPerformed
         
-        Professor professor = new Professor(TextEmail.getText(), PasswordSenha.getText());
+        char[] senhaChars = PasswordSenha.getPassword();
+        String senha = new String(senhaChars);
         
-        TextEmail.setText("");
-        PasswordSenha.setText("");
+        String email = TextEmail.getText();
+        
+        ProfessorDAO pdao = new ProfessorDAO();
+        
+        try{
+            boolean resultadoVerificacao = pdao.verificarUsuario(senha, email);
+
+            if(resultadoVerificacao){
+                TextEmail.setText("");
+                PasswordSenha.setText("");
+                
+                fecharTela();
+                TelaPrincipalProfessor telaPrincipal = new TelaPrincipalProfessor();
+                telaPrincipal.setVisible(true);
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Nome, senha ou email inválidos!", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados "+e);
+        }
+        
     }//GEN-LAST:event_ButtonEntrarActionPerformed
 
     /**

@@ -4,6 +4,9 @@
  */
 package duoclass.View;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author rober
@@ -17,6 +20,12 @@ public class TelaAtividade extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void fecharTela(){
+        
+        WindowEvent fecharjanela = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(fecharjanela);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,13 +44,18 @@ public class TelaAtividade extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         ButtonVoltarTelaPrincipalProfessor = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         PaneMenuAtividade.setBackground(new java.awt.Color(51, 153, 0));
 
         ButtonSairTelaAtividade.setBackground(new java.awt.Color(51, 153, 0));
         ButtonSairTelaAtividade.setText("Sair");
         ButtonSairTelaAtividade.setBorder(null);
+        ButtonSairTelaAtividade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSairTelaAtividadeActionPerformed(evt);
+            }
+        });
 
         LabelNomeProfessorMenuAtividade.setForeground(new java.awt.Color(0, 0, 0));
         LabelNomeProfessorMenuAtividade.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -132,8 +146,16 @@ public class TelaAtividade extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonVoltarTelaPrincipalProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVoltarTelaPrincipalProfessorActionPerformed
-        // TODO add your handling code here:
+        
+        fecharTela();
+        TelaPrincipalProfessor telaPrincipal = new TelaPrincipalProfessor();
+        telaPrincipal.setVisible(true);
     }//GEN-LAST:event_ButtonVoltarTelaPrincipalProfessorActionPerformed
+
+    private void ButtonSairTelaAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSairTelaAtividadeActionPerformed
+        
+        fecharTela();
+    }//GEN-LAST:event_ButtonSairTelaAtividadeActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,9 @@
  */
 package duoclass.View;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author rober
@@ -17,6 +20,12 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void fecharTela(){
+        
+        WindowEvent fecharjanela = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(fecharjanela);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,11 +40,16 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
         ButtonCadastrarTurma = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         ButtonVoltarTelaPrincipalProfessor.setBackground(new java.awt.Color(153, 153, 153));
         ButtonVoltarTelaPrincipalProfessor.setForeground(new java.awt.Color(0, 0, 0));
         ButtonVoltarTelaPrincipalProfessor.setText("Voltar");
+        ButtonVoltarTelaPrincipalProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonVoltarTelaPrincipalProfessorActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Nome da Turma");
@@ -80,6 +94,13 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonVoltarTelaPrincipalProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVoltarTelaPrincipalProfessorActionPerformed
+        
+        fecharTela();
+        TelaPrincipalProfessor telaPrincipal = new TelaPrincipalProfessor();
+        telaPrincipal.setVisible(true);
+    }//GEN-LAST:event_ButtonVoltarTelaPrincipalProfessorActionPerformed
 
     /**
      * @param args the command line arguments

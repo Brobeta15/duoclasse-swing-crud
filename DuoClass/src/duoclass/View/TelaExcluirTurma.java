@@ -4,6 +4,9 @@
  */
 package duoclass.View;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author rober
@@ -17,6 +20,12 @@ public class TelaExcluirTurma extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void fecharTela(){
+        
+        WindowEvent fecharjanela = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(fecharjanela);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +41,7 @@ public class TelaExcluirTurma extends javax.swing.JFrame {
         jTextPane1 = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         ButtonVoltarTelaTurma.setBackground(new java.awt.Color(153, 153, 153));
         ButtonVoltarTelaTurma.setForeground(new java.awt.Color(0, 0, 0));
@@ -96,7 +105,10 @@ public class TelaExcluirTurma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonVoltarTelaTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVoltarTelaTurmaActionPerformed
-        // TODO add your handling code here:
+        
+        fecharTela();
+        TelaPrincipalProfessor telaPrincipal = new TelaPrincipalProfessor();
+        telaPrincipal.setVisible(true);
     }//GEN-LAST:event_ButtonVoltarTelaTurmaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

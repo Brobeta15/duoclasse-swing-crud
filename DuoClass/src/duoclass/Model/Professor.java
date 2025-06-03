@@ -8,6 +8,24 @@ public class Professor {
     private String email_professor;
     private String senha_professor;
     
+    public static boolean validarLoginProfessor(Professor professor){
+        
+        boolean[] status = new boolean[2];
+
+        boolean statusEmail = validarEmail(professor.getEmail_professor());
+        status[1] = statusEmail;
+        boolean statusSenha = validarSenha(professor.getSenha_professor());
+        status[2] = statusSenha;
+        
+        for (int i = 0; i < 2; i++) {
+            
+            if(status[i] == false){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public static boolean validarCadastro(Professor professor){
         
         boolean[] status = new boolean[3];
