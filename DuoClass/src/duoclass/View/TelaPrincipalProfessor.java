@@ -1,6 +1,7 @@
 
 package duoclass.View;
 
+import duoclass.Controller.ProfessorController;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 
@@ -10,14 +11,19 @@ import java.awt.event.WindowEvent;
  */
 public class TelaPrincipalProfessor extends javax.swing.JFrame {
 
+    private final String email;
+    private final String senha;
+
     
 
-    public TelaPrincipalProfessor() {
-        initComponents();
+    public TelaPrincipalProfessor(String email, String senha) {
         
-        
-        
+        this.email = email;
+        this.senha = senha;
+
+        initComponents(); 
     }
+
 
     public void fecharTela(){
         
@@ -74,7 +80,6 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         PaneMenuTurma.setBackground(new java.awt.Color(51, 153, 0));
 
         ButtonSair.setBackground(new java.awt.Color(51, 153, 0));
-        ButtonSair.setForeground(new java.awt.Color(0, 0, 0));
         ButtonSair.setText("Sair");
         ButtonSair.setBorder(null);
         ButtonSair.addActionListener(new java.awt.event.ActionListener() {
@@ -83,8 +88,16 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
             }
         });
 
-        LabelNomeProfessorMenu.setForeground(new java.awt.Color(0, 0, 0));
         LabelNomeProfessorMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LabelNomeProfessorMenu.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                LabelNomeProfessorMenuAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout PaneMenuTurmaLayout = new javax.swing.GroupLayout(PaneMenuTurma);
         PaneMenuTurma.setLayout(PaneMenuTurmaLayout);
@@ -111,7 +124,6 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
 
         ButtonExcluirTurma.setBackground(new java.awt.Color(204, 0, 0));
         ButtonExcluirTurma.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ButtonExcluirTurma.setForeground(new java.awt.Color(0, 0, 0));
         ButtonExcluirTurma.setText("Excluir Turma");
         ButtonExcluirTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,12 +132,10 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         });
 
         LabelTurmas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        LabelTurmas.setForeground(new java.awt.Color(0, 0, 0));
         LabelTurmas.setText("Turmas");
 
         ButtonCadastrarTurma1.setBackground(new java.awt.Color(51, 153, 255));
         ButtonCadastrarTurma1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ButtonCadastrarTurma1.setForeground(new java.awt.Color(0, 0, 0));
         ButtonCadastrarTurma1.setText("Cadastrar Turma");
         ButtonCadastrarTurma1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +145,6 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
 
         ButtonVisualizarAtividade.setBackground(new java.awt.Color(255, 204, 0));
         ButtonVisualizarAtividade.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ButtonVisualizarAtividade.setForeground(new java.awt.Color(0, 0, 0));
         ButtonVisualizarAtividade.setText("Visualizar");
         ButtonVisualizarAtividade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,23 +206,28 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     private void ButtonExcluirTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirTurmaActionPerformed
         
         fecharTela();
-        TelaExcluirTurma telaExcluir = new TelaExcluirTurma();
+        TelaExcluirTurma telaExcluir = new TelaExcluirTurma(email, senha);
         telaExcluir.setVisible(true);
     }//GEN-LAST:event_ButtonExcluirTurmaActionPerformed
 
     private void ButtonVisualizarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVisualizarAtividadeActionPerformed
         
         fecharTela();
-        TelaAtividade telaAtividade = new TelaAtividade();
+        TelaAtividade telaAtividade = new TelaAtividade(email, senha);
         telaAtividade.setVisible(true);
     }//GEN-LAST:event_ButtonVisualizarAtividadeActionPerformed
 
     private void ButtonCadastrarTurma1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarTurma1ActionPerformed
         
         fecharTela();
-        TelaCadastroTurma telaturma = new TelaCadastroTurma();
+        TelaCadastroTurma telaturma = new TelaCadastroTurma(email,senha);
         telaturma.setVisible(true);
     }//GEN-LAST:event_ButtonCadastrarTurma1ActionPerformed
+
+    private void LabelNomeProfessorMenuAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_LabelNomeProfessorMenuAncestorAdded
+        
+       LabelNomeProfessorMenu.setText(ProfessorController.imprimirNomeProfessor(email, senha));
+    }//GEN-LAST:event_LabelNomeProfessorMenuAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -245,7 +259,7 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipalProfessor().setVisible(true);
+                //new TelaPrincipalProfessor().setVisible(true);
             }
         });
     }

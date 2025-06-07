@@ -1,11 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package duoclass.View;
 
+import duoclass.Controller.TurmaController;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,10 +12,14 @@ import java.awt.event.WindowEvent;
  */
 public class TelaCadastroTurma extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCadastroTurma
-     */
-    public TelaCadastroTurma() {
+    private final String email;
+    private final String senha;
+    
+    public TelaCadastroTurma(String email, String senha) {
+        
+        this.email = email;
+        this.senha = senha;
+        
         initComponents();
     }
 
@@ -38,7 +41,7 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
         ButtonVoltarTelaPrincipalProfessor = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         ButtonCadastrarTurma = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        TextNomeTurma = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,6 +60,17 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
         ButtonCadastrarTurma.setBackground(new java.awt.Color(51, 153, 255));
         ButtonCadastrarTurma.setForeground(new java.awt.Color(0, 0, 0));
         ButtonCadastrarTurma.setText("Cadastrar");
+        ButtonCadastrarTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCadastrarTurmaActionPerformed(evt);
+            }
+        });
+
+        TextNomeTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextNomeTurmaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,7 +86,7 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(177, 177, 177)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TextNomeTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(220, 220, 220)
                         .addComponent(ButtonCadastrarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -86,7 +100,7 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
                 .addGap(66, 66, 66)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextNomeTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
                 .addComponent(ButtonCadastrarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(148, Short.MAX_VALUE))
@@ -98,49 +112,37 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
     private void ButtonVoltarTelaPrincipalProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVoltarTelaPrincipalProfessorActionPerformed
         
         fecharTela();
-        TelaPrincipalProfessor telaPrincipal = new TelaPrincipalProfessor();
+        TelaPrincipalProfessor telaPrincipal = new TelaPrincipalProfessor(email,senha);
         telaPrincipal.setVisible(true);
     }//GEN-LAST:event_ButtonVoltarTelaPrincipalProfessorActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroTurma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroTurma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroTurma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroTurma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void TextNomeTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNomeTurmaActionPerformed
+        
+        
+    }//GEN-LAST:event_TextNomeTurmaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCadastroTurma().setVisible(true);
-            }
-        });
-    }
+    private void ButtonCadastrarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarTurmaActionPerformed
+    
+        String nome = TextNomeTurma.getText();
+        
+        TurmaController.inserirTurma(nome, email, senha);
+        
+        if(TurmaController.verificarTurma(nome)){
+            
+            TextNomeTurma.setText("");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "A turma não pode ser cadastrada! ", "ERRO!", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_ButtonCadastrarTurmaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCadastrarTurma;
     private javax.swing.JButton ButtonVoltarTelaPrincipalProfessor;
+    private javax.swing.JTextField TextNomeTurma;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

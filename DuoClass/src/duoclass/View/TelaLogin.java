@@ -1,6 +1,7 @@
 
 package duoclass.View;
 
+import duoclass.Controller.ProfessorController;
 import duoclass.Model.Professor;
 import duoclass.Model.ProfessorDAO;
 import java.awt.Toolkit;
@@ -143,20 +144,15 @@ public class TelaLogin extends javax.swing.JFrame {
         
         char[] senhaChars = PasswordSenha.getPassword();
         String senha = new String(senhaChars);
-        
         String email = TextEmail.getText();
-        
-        ProfessorDAO pdao = new ProfessorDAO();
-        
-        try{
-            boolean resultadoVerificacao = pdao.verificarUsuario(senha, email);
 
-            if(resultadoVerificacao){
+        try{
+            if(ProfessorController.verificarUsuario(senha, email)){
                 TextEmail.setText("");
                 PasswordSenha.setText("");
-                
+
                 fecharTela();
-                TelaPrincipalProfessor telaPrincipal = new TelaPrincipalProfessor();
+                TelaPrincipalProfessor telaPrincipal = new TelaPrincipalProfessor(email, senha);
                 telaPrincipal.setVisible(true);
                 
             }else{
