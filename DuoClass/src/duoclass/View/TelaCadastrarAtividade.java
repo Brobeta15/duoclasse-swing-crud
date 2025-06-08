@@ -7,6 +7,7 @@ package duoclass.View;
 import duoclass.Controller.AtividadeController;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -145,12 +146,15 @@ public class TelaCadastrarAtividade extends javax.swing.JFrame {
         String titulo = TextTituloAtividade.getText();
         String descricao = TextDescricao.getText();
         
-        AtividadeController.cadastrarAtividade(titulo, descricao, turma);
+        if(titulo == null || titulo.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "A atividade não pode ser cadastrada! ", "ERRO!", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            
+            AtividadeController.cadastrarAtividade(titulo, descricao, turma);
         
-        TextTituloAtividade.setText("");
-        TextDescricao.setText("");
-        
-        
+            TextTituloAtividade.setText("");
+            TextDescricao.setText("");
+        } 
     }//GEN-LAST:event_ButtonCadastrarAtividadeActionPerformed
 
     private void TextTituloAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTituloAtividadeActionPerformed

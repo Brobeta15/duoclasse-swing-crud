@@ -51,20 +51,23 @@ public class TurmaDAO {
         }
     }
     
-    public static List<String> selecionarTurma() throws SQLException{
+    public static List<String> selecionarTurma(int cdProfessor) throws SQLException{
         
         List<String> listaTurmas = new ArrayList<String>();
         
-        String sql = "SELECT nome_turma FROM turma";
+        String sql = "SELECT nome_turma FROM turma WHERE cd_professor = ?";
         
         try(Connection conn = Conexao_banco.conectar();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery()){
+            PreparedStatement ps = conn.prepareStatement(sql)){
             
-            while(rs.next()){
+            ps.setInt(1, cdProfessor);
+            
+            try(ResultSet rs = ps.executeQuery()){
+                while(rs.next()){
 
-                listaTurmas.add(rs.getString("nome_turma")); 
-            }           
+                    listaTurmas.add(rs.getString("nome_turma")); 
+                } 
+            }
         }
         return listaTurmas;
     }
@@ -99,15 +102,14 @@ public class TurmaDAO {
         }
     }
     
-    public static boolean verificarTurmaCadastrada(String nome, int cd_professor) throws SQLException{
+    public static boolean verificarTurmaCadastrada(String nome) throws SQLException{
         
-        String sql = "SELECT 1 FROM turma WHERE nome_turma = ? AND cd_professor = ?";
+        String sql = "SELECT 1 FROM turma WHERE nome_turma = ?";
         
         try(Connection conn = Conexao_banco.conectar();
             PreparedStatement ps = conn.prepareStatement(sql)) {
             
             ps.setString(1, nome);
-            ps.setInt(2, cd_professor);
             
             try(ResultSet rs = ps.executeQuery()){
                 if(rs.next()){

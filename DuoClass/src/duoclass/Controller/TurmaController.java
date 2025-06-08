@@ -10,6 +10,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TurmaController {
+
+    
+    public static Integer verificarCdTurma(String turma){
+        
+        try {
+            return TurmaDAO.retornarCdTurma(turma);
+        } catch (SQLException ex) {
+            Logger.getLogger(TurmaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
     public static boolean verificarTurmaComAtividadeController(String nomeTurma){
      
@@ -23,10 +34,11 @@ public class TurmaController {
         return false;
     }
     
-    public static List<String> selecionarTurmaController(){
+    public static List<String> selecionarTurmaController(String email, String senha){
         
         try {
-            return TurmaDAO.selecionarTurma();
+            int cd = ProfessorDAO.encontrarCdProfessor(senha, email);
+            return TurmaDAO.selecionarTurma(cd);
             
         } catch (SQLException ex) {
             Logger.getLogger(TurmaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,11 +56,10 @@ public class TurmaController {
         }
     }
     
-    public static boolean verificarTurmaExistente(String nomeTurma, String email, String senha){
+    public static boolean verificarTurmaExistente(String nomeTurma){
         
         try {
-            int cdProfessor = ProfessorDAO.encontrarCdProfessor(senha, email);
-            return TurmaDAO.verificarTurmaCadastrada(nomeTurma, cdProfessor);
+            return TurmaDAO.verificarTurmaCadastrada(nomeTurma);
             
         } catch (SQLException ex) {
             Logger.getLogger(TurmaController.class.getName()).log(Level.SEVERE, null, ex);

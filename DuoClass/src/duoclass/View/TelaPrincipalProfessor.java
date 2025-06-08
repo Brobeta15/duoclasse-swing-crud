@@ -248,14 +248,14 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     private void tableTurmaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tableTurmaAncestorAdded
         
         DefaultTableModel model = (DefaultTableModel) tableTurma.getModel();
-        
         List<String> listaTurmas = new ArrayList<String>();
-        listaTurmas = TurmaController.selecionarTurmaController();
+        
+        
+        listaTurmas = TurmaController.selecionarTurmaController(email, senha);
         
         for (int i = 0; i < listaTurmas.size(); i++) {
             
             model.addRow(new Object[]{i+1, listaTurmas.get(i)});
-            
         }
     }//GEN-LAST:event_tableTurmaAncestorAdded
 

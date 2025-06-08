@@ -1,9 +1,15 @@
 
 package duoclass.View;
 
+import duoclass.Controller.AtividadeController;
 import duoclass.Controller.ProfessorController;
+import duoclass.Controller.TurmaController;
+import duoclass.Model.Atividade;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaAtividade extends javax.swing.JFrame {
  
@@ -41,7 +47,7 @@ public class TelaAtividade extends javax.swing.JFrame {
         LabelTurmaAtividade = new javax.swing.JLabel();
         LabelNomeTurmaAtividade = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableAtividade = new javax.swing.JTable();
         ButtonVoltarTelaPrincipalProfessor = new javax.swing.JButton();
         buttonTelaCadastrarAtividade = new javax.swing.JButton();
 
@@ -102,18 +108,32 @@ public class TelaAtividade extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableAtividade.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Número", "Título", "Descrição"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tableAtividade.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tableAtividadeAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(tableAtividade);
 
         ButtonVoltarTelaPrincipalProfessor.setBackground(new java.awt.Color(153, 153, 153));
         ButtonVoltarTelaPrincipalProfessor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -205,6 +225,20 @@ public class TelaAtividade extends javax.swing.JFrame {
         cadastrarAtividade.setVisible(true);
     }//GEN-LAST:event_buttonTelaCadastrarAtividadeActionPerformed
 
+    private void tableAtividadeAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tableAtividadeAncestorAdded
+        
+        DefaultTableModel model = (DefaultTableModel) tableAtividade.getModel();
+        List<Atividade> listaAtividades = new ArrayList<Atividade>();
+        
+        int cd = TurmaController.verificarCdTurma(turma);
+        listaAtividades = AtividadeController.selecionarTurmaController(cd);
+        
+        for (int i = 0; i < listaAtividades.size(); i++) {
+            
+            model.addRow(new Object[]{i+1, listaAtividades.get(i).getNome_atividade(), listaAtividades.get(i).getDs_atividade()});
+        }
+    }//GEN-LAST:event_tableAtividadeAncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -219,6 +253,6 @@ public class TelaAtividade extends javax.swing.JFrame {
     private javax.swing.JPanel PaneMenuAtividade;
     private javax.swing.JButton buttonTelaCadastrarAtividade;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableAtividade;
     // End of variables declaration//GEN-END:variables
 }

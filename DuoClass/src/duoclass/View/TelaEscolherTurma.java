@@ -33,7 +33,7 @@ public class TelaEscolherTurma extends javax.swing.JFrame {
 
         comboBoxTurmas.removeAllItems();
 
-        List<String> listaTurmas = TurmaController.selecionarTurmaController();
+        List<String> listaTurmas = TurmaController.selecionarTurmaController(email, senha);
 
         for (String turma : listaTurmas) {
             comboBoxTurmas.addItem(turma);
@@ -144,9 +144,16 @@ public class TelaEscolherTurma extends javax.swing.JFrame {
 
     private void buttonVisualizarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVisualizarAtividadeActionPerformed
 
-        fecharTela();
-        TelaAtividade telaAtividade = new TelaAtividade(email, senha, turma);
-        telaAtividade.setVisible(true);
+        String comboBox = (String) comboBoxTurmas.getSelectedItem();
+        
+        if(comboBox == null || comboBox.toString().trim().isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Você não possue nenhuma turma!", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            fecharTela();
+            TelaAtividade telaAtividade = new TelaAtividade(email, senha, turma);
+            telaAtividade.setVisible(true);
+        }
     }//GEN-LAST:event_buttonVisualizarAtividadeActionPerformed
 
 
