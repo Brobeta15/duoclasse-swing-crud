@@ -125,17 +125,22 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
     
         String nome = TextNomeTurma.getText();
         
-        TurmaController.inserirTurma(nome, email, senha);
-        
-        if(TurmaController.verificarTurma(nome)){
+        if(TurmaController.verificarTurmaExistente(nome, email, senha)){
             
-            TextNomeTurma.setText("");
-            
+            JOptionPane.showMessageDialog(null, "Você já possue uma turma com esse nome! ", "ERRO!", JOptionPane.INFORMATION_MESSAGE);
+   
         }else{
-            JOptionPane.showMessageDialog(null, "A turma não pode ser cadastrada! ", "ERRO!", JOptionPane.INFORMATION_MESSAGE);
+            TurmaController.inserirTurma(nome, email, senha);
+        
+            if(TurmaController.verificarTurmaExistente(nome, email, senha)){
+            
+                TextNomeTurma.setText("");
+            
+            }else{
+                JOptionPane.showMessageDialog(null, "A turma não pode ser cadastrada! ", "ERRO!", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
-        
-        
+
     }//GEN-LAST:event_ButtonCadastrarTurmaActionPerformed
 
 

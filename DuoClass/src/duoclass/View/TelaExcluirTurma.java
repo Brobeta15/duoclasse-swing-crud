@@ -1,8 +1,11 @@
 
 package duoclass.View;
 
+import duoclass.Controller.AtividadeController;
+import duoclass.Controller.TurmaController;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 public class TelaExcluirTurma extends javax.swing.JFrame {
 
@@ -20,8 +23,7 @@ public class TelaExcluirTurma extends javax.swing.JFrame {
     public void fecharTela(){
         
         WindowEvent fecharjanela = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(fecharjanela);
-        
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(fecharjanela);    
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +37,7 @@ public class TelaExcluirTurma extends javax.swing.JFrame {
         ButtonVoltarTelaTurma = new javax.swing.JButton();
         LabelInsirirTurma = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        textTurma = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -53,7 +55,7 @@ public class TelaExcluirTurma extends javax.swing.JFrame {
         LabelInsirirTurma.setForeground(new java.awt.Color(0, 0, 0));
         LabelInsirirTurma.setText("Insira o nome da turma");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(textTurma);
 
         jButton1.setBackground(new java.awt.Color(204, 0, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -109,16 +111,29 @@ public class TelaExcluirTurma extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonVoltarTelaTurmaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    
+        String nome = textTurma.getText();
+        
+            if(TurmaController.verificarTurmaComAtividadeController(nome)){
+                
+                JOptionPane.showMessageDialog(null, "Não pode ser excluida turmas com atividades cadastradas!", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                int opcao = JOptionPane.showOptionDialog(null,"Tem certeza que deseja excluir esta turma?","Confirmação",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,
+                null, new Object[] { "Sim", "Não" }, "Sim" );
+                
+                if (opcao == JOptionPane.YES_OPTION) {
+                    
+                    TurmaController.excluirTurmaController(nome, email, senha);
+                    textTurma.setText("");
+                }  
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonVoltarTelaTurma;
     private javax.swing.JLabel LabelInsirirTurma;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane textTurma;
     // End of variables declaration//GEN-END:variables
 }

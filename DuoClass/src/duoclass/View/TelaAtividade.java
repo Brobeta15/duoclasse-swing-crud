@@ -1,6 +1,7 @@
 
 package duoclass.View;
 
+import duoclass.Controller.ProfessorController;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 
@@ -8,11 +9,13 @@ public class TelaAtividade extends javax.swing.JFrame {
  
     private final String email;
     private final String senha;
+    private final String turma;
     
-    public TelaAtividade(String email, String senha) {
+    public TelaAtividade(String email, String senha, String turma) {
         
         this.email = email;
         this.senha = senha;
+        this.turma = turma;
         
         initComponents();
     }
@@ -40,6 +43,7 @@ public class TelaAtividade extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         ButtonVoltarTelaPrincipalProfessor = new javax.swing.JButton();
+        buttonTelaCadastrarAtividade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -54,8 +58,16 @@ public class TelaAtividade extends javax.swing.JFrame {
             }
         });
 
-        LabelNomeProfessorMenuAtividade.setForeground(new java.awt.Color(0, 0, 0));
         LabelNomeProfessorMenuAtividade.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LabelNomeProfessorMenuAtividade.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                LabelNomeProfessorMenuAtividadeAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout PaneMenuAtividadeLayout = new javax.swing.GroupLayout(PaneMenuAtividade);
         PaneMenuAtividade.setLayout(PaneMenuAtividadeLayout);
@@ -78,29 +90,47 @@ public class TelaAtividade extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        LabelTurmaAtividade.setForeground(new java.awt.Color(0, 0, 0));
         LabelTurmaAtividade.setText("Turma: ");
+
+        LabelNomeTurmaAtividade.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                LabelNomeTurmaAtividadeAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Número", "Nome", "Descrição"
+
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         ButtonVoltarTelaPrincipalProfessor.setBackground(new java.awt.Color(153, 153, 153));
         ButtonVoltarTelaPrincipalProfessor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        ButtonVoltarTelaPrincipalProfessor.setForeground(new java.awt.Color(0, 0, 0));
         ButtonVoltarTelaPrincipalProfessor.setText("Voltar");
         ButtonVoltarTelaPrincipalProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonVoltarTelaPrincipalProfessorActionPerformed(evt);
+            }
+        });
+
+        buttonTelaCadastrarAtividade.setBackground(new java.awt.Color(51, 153, 255));
+        buttonTelaCadastrarAtividade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonTelaCadastrarAtividade.setForeground(new java.awt.Color(0, 0, 0));
+        buttonTelaCadastrarAtividade.setText("Cadastrar Atividade");
+        buttonTelaCadastrarAtividade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTelaCadastrarAtividadeActionPerformed(evt);
             }
         });
 
@@ -120,8 +150,10 @@ public class TelaAtividade extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(LabelNomeTurmaAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(ButtonVoltarTelaPrincipalProfessor)))
+                        .addGap(41, 41, 41)
+                        .addComponent(ButtonVoltarTelaPrincipalProfessor)
+                        .addGap(98, 98, 98)
+                        .addComponent(buttonTelaCadastrarAtividade)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -134,8 +166,10 @@ public class TelaAtividade extends javax.swing.JFrame {
                     .addComponent(LabelNomeTurmaAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(ButtonVoltarTelaPrincipalProfessor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonVoltarTelaPrincipalProfessor)
+                    .addComponent(buttonTelaCadastrarAtividade))
                 .addGap(20, 20, 20))
         );
 
@@ -145,14 +179,31 @@ public class TelaAtividade extends javax.swing.JFrame {
     private void ButtonVoltarTelaPrincipalProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVoltarTelaPrincipalProfessorActionPerformed
         
         fecharTela();
-        TelaPrincipalProfessor telaPrincipal = new TelaPrincipalProfessor(email, senha);
-        telaPrincipal.setVisible(true);
+        TelaEscolherTurma escolherTurma = new TelaEscolherTurma(email, senha);
+        escolherTurma.setVisible(true);
     }//GEN-LAST:event_ButtonVoltarTelaPrincipalProfessorActionPerformed
 
     private void ButtonSairTelaAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSairTelaAtividadeActionPerformed
         
         fecharTela();
     }//GEN-LAST:event_ButtonSairTelaAtividadeActionPerformed
+
+    private void LabelNomeProfessorMenuAtividadeAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_LabelNomeProfessorMenuAtividadeAncestorAdded
+
+        LabelNomeProfessorMenuAtividade.setText(ProfessorController.imprimirNomeProfessor(email, senha));
+    }//GEN-LAST:event_LabelNomeProfessorMenuAtividadeAncestorAdded
+
+    private void LabelNomeTurmaAtividadeAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_LabelNomeTurmaAtividadeAncestorAdded
+        
+        LabelNomeTurmaAtividade.setText(turma);
+    }//GEN-LAST:event_LabelNomeTurmaAtividadeAncestorAdded
+
+    private void buttonTelaCadastrarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTelaCadastrarAtividadeActionPerformed
+        
+        fecharTela();
+        TelaCadastrarAtividade cadastrarAtividade = new TelaCadastrarAtividade(email, senha, turma);
+        cadastrarAtividade.setVisible(true);
+    }//GEN-LAST:event_buttonTelaCadastrarAtividadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,6 +217,7 @@ public class TelaAtividade extends javax.swing.JFrame {
     private javax.swing.JLabel LabelNomeTurmaAtividade;
     private javax.swing.JLabel LabelTurmaAtividade;
     private javax.swing.JPanel PaneMenuAtividade;
+    private javax.swing.JButton buttonTelaCadastrarAtividade;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

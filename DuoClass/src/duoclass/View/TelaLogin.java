@@ -31,7 +31,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         ButtonEntrar = new javax.swing.JButton();
-        ButtonCadastrar = new javax.swing.JButton();
         LabelEmail = new javax.swing.JLabel();
         LabelSenha = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -45,7 +44,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
         ButtonEntrar.setBackground(new java.awt.Color(51, 153, 255));
         ButtonEntrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        ButtonEntrar.setForeground(new java.awt.Color(0, 0, 0));
         ButtonEntrar.setText("Entrar");
         ButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,18 +51,11 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        ButtonCadastrar.setBackground(new java.awt.Color(153, 153, 153));
-        ButtonCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        ButtonCadastrar.setForeground(new java.awt.Color(0, 0, 0));
-        ButtonCadastrar.setText("Cadastrar");
-
         LabelEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LabelEmail.setForeground(new java.awt.Color(0, 0, 0));
         LabelEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelEmail.setText("Email");
 
         LabelSenha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LabelSenha.setForeground(new java.awt.Color(0, 0, 0));
         LabelSenha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelSenha.setText("Senha");
 
@@ -85,17 +76,10 @@ public class TelaLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(ButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(Duo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Class, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(146, 146, 146)
+                .addComponent(Duo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Class, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 122, Short.MAX_VALUE)
@@ -104,6 +88,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(LabelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
@@ -123,11 +108,9 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76))
+                .addGap(54, 54, 54)
+                .addComponent(ButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
         );
 
         pack();
@@ -200,7 +183,6 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonCadastrar;
     private javax.swing.JButton ButtonEntrar;
     private javax.swing.JLabel Class;
     private javax.swing.JLabel Duo;

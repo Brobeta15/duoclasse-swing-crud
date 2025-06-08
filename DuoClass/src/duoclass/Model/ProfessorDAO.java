@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 
 public class ProfessorDAO {
     
-    public static int encontrarCdProfessor(String nome, String senha, String email) throws SQLException{
+    public static Integer encontrarCdProfessor(String senha, String email) throws SQLException{
         
         String sql = "SELECT cd_professor FROM professor WHERE senha_professor = ? AND email_professor = ?";
         
@@ -28,7 +28,7 @@ public class ProfessorDAO {
                 }
             }
             System.out.println("deu errado");
-            return 0;
+            return null;
         }
     }
     public static String encontrarNomeProfessor(String senha, String email)throws SQLException{

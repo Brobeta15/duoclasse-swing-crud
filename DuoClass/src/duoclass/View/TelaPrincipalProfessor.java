@@ -2,8 +2,12 @@
 package duoclass.View;
 
 import duoclass.Controller.ProfessorController;
+import duoclass.Controller.TurmaController;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -42,7 +46,7 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        TableTurma = new javax.swing.JTable();
+        tableTurma = new javax.swing.JTable();
         PaneMenuTurma = new javax.swing.JPanel();
         ButtonSair = new javax.swing.JButton();
         LabelNomeProfessorMenu = new javax.swing.JLabel();
@@ -55,27 +59,39 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        TableTurma.setModel(new javax.swing.table.DefaultTableModel(
+        tableTurma.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Número", "Nome"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        TableTurma.setRowHeight(40);
-        jScrollPane1.setViewportView(TableTurma);
+        tableTurma.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tableTurmaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(tableTurma);
 
         PaneMenuTurma.setBackground(new java.awt.Color(51, 153, 0));
 
@@ -213,8 +229,8 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     private void ButtonVisualizarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVisualizarAtividadeActionPerformed
         
         fecharTela();
-        TelaAtividade telaAtividade = new TelaAtividade(email, senha);
-        telaAtividade.setVisible(true);
+        TelaEscolherTurma escolherTurma = new TelaEscolherTurma(email, senha);
+        escolherTurma.setVisible(true);
     }//GEN-LAST:event_ButtonVisualizarAtividadeActionPerformed
 
     private void ButtonCadastrarTurma1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarTurma1ActionPerformed
@@ -228,6 +244,20 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         
        LabelNomeProfessorMenu.setText(ProfessorController.imprimirNomeProfessor(email, senha));
     }//GEN-LAST:event_LabelNomeProfessorMenuAncestorAdded
+
+    private void tableTurmaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tableTurmaAncestorAdded
+        
+        DefaultTableModel model = (DefaultTableModel) tableTurma.getModel();
+        
+        List<String> listaTurmas = new ArrayList<String>();
+        listaTurmas = TurmaController.selecionarTurmaController();
+        
+        for (int i = 0; i < listaTurmas.size(); i++) {
+            
+            model.addRow(new Object[]{i+1, listaTurmas.get(i)});
+            
+        }
+    }//GEN-LAST:event_tableTurmaAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -273,7 +303,7 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     private javax.swing.JLabel LabelNomeTurmaAtual;
     private javax.swing.JLabel LabelTurmas;
     private javax.swing.JPanel PaneMenuTurma;
-    private javax.swing.JTable TableTurma;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableTurma;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,13 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package douclass.Controller;
 
-/**
- *
- * @author roberta_bento
- */
+package duoclass.Controller;
+
+import duoclass.Model.AtividadeDAO;
+import duoclass.Model.TurmaDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class AtividadeController {
     
+    
+    public static void cadastrarAtividade(String titulo, String descricao, String turma){
+        
+        try {
+            int cd = TurmaDAO.retornarCdTurma(turma);
+            AtividadeDAO.cadastrarAtividade(titulo, descricao, cd);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AtividadeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

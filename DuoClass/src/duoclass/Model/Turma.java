@@ -6,6 +6,11 @@ public class Turma {
     private int cd_turma;
     private String nome_turma;
     private int cd_professor;
+    
+    @Override
+    public String toString() {
+        return this.getNome_turma();
+    }
 
     public int getCd_turma() {
         return cd_turma;
